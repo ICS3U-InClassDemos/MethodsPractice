@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Diagnostics;
+
 
 namespace MethodsPractice
 {
@@ -22,14 +24,17 @@ namespace MethodsPractice
             /// TODO - Place method calls here
 
             PrintSignature();
-
+            RectangleArea();
+            AddValues();
+            CircleArea();
+            Max();
         }
 
         /// 1. Print a signature to the screen
 
         public void PrintSignature()
         {
-            q1Output.Text = "Your's truly, \n\nGrace Hopper.";
+            q1Output.Text = "Your's truly, \n\nMr. T.";
         }
 
         /// 2. Create a method to calculate the area of a rectangle with
@@ -39,21 +44,42 @@ namespace MethodsPractice
 
         public void RectangleArea()
         {
+            int width = 5;
+            int length = 7;
 
+            int area = width * length;
+
+            q2Output.Text = $"The area of a {width} x {length} rectangle is {area} units squared";
         }
 
         /// 3. Create a method to get numbers from q3Num1Input and q3Num2Input,
         /// add them together, and then display output as follows:
         /// 
         /// 5 + 4 = 9 
+        public void AddValues()
+        {
+            int num1 = Convert.ToInt32(q3Num1Input.Text);
+            int num2 = Convert.ToInt32(q3Num2Input.Text);
 
+            int sum = num1 + num2;
+
+            q3Output.Text = $"{num1} + {num2} = {sum}";
+        }
 
         
         /// 4. Create a method to calculate the area of a circle based on  
         /// the radius entered in radiusInput, then display output as follows:
         /// 
         /// The area of a circle with radius of 4 is 50.24 units squared
+        public void CircleArea()
+        {
+            int radius = Convert.ToInt32(radiusInput.Text);
 
+            //double area = 3.14 * radius * radius;
+            double area = Math.PI * Math.Pow(radius, 2);
+                 
+            q4Output.Text = $"The area of a circle with radius of {radius} is {area.ToString(".##")} units squared";
+        }
 
 
         /// 5. 3U Only - Create a method that will determine and display
@@ -62,7 +88,71 @@ namespace MethodsPractice
         /// 
         /// Inputs: 5, 7, 2
         /// he largest value is 7
+        public void Max()
+        {
+            int num1 = Convert.ToInt16(q5Num1Input.Text);
+            int num2 = Convert.ToInt16(q5Num2Input.Text);
+            int num3 = Convert.ToInt16(q5Num3Input.Text);
+
+            int max = num1;
+
+            if (num2 > max)
+            {
+                max = num2;
+            }
+
+            if (num3 > max)
+            {
+                max = num3;
+            }
+
+            q5Output.Text = $"The largest value is {max}";
+        }
+
+        public void MaxEfficiency()
+        {
+            int num1 = Convert.ToInt16(q5Num1Input.Text);
+            int num2 = Convert.ToInt16(q5Num2Input.Text);
+            int num3 = Convert.ToInt16(q5Num3Input.Text);
+            int max = 0;
+
+            Stopwatch sw = new Stopwatch();
+            sw.Start();
+
+            for (int i = 0; i < 10000000; i++)
+            {
+                max = num1;
+
+                //if (num2 > max)
+                //{
+                //    max = num2;
+                //}
+
+                //if (num3 > max)
+                //{
+                //    max = num3;
+                //}
 
 
+                if (num1 > num2 && num1 > num3)
+                {
+                    max = num1;
+                }
+
+                if (num2 > num1 && num2 > num3)
+                {
+                    max = num2;
+                }
+
+                if (num3 > num1 && num3 > num2)
+                {
+                    max = num2;
+                }
+
+            }
+
+            sw.Stop();
+            q5Output.Text = $"{sw.ElapsedMilliseconds}";
+        }
     }
 }
