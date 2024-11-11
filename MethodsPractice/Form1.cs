@@ -22,7 +22,8 @@ namespace MethodsPractice
             /// TODO - Place method calls here
 
             PrintSignature();
-
+            RectangleArea();
+            AddNumbers();   
         }
 
         /// 1. Print a signature to the screen
@@ -39,16 +40,29 @@ namespace MethodsPractice
 
         public void RectangleArea()
         {
+            int width = 5;
+            int height = 7;
+            int area;
 
+            area = width * height;
+
+            q2Output.Text = $"The area of a {width} x {height} is {area} units squared";
         }
 
         /// 3. Create a method to get numbers from q3Num1Input and q3Num2Input,
         /// add them together, and then display output as follows:
         /// 
         /// 5 + 4 = 9 
+        public void AddNumbers()
+        {
+            int num1 = Convert.ToInt16(q3Num1Input.Text);
+            int num2 = Convert.ToInt16(q3Num2Input.Text);
+
+            int sum = num1 + num2;
+            q3Output.Text = $"{num1} + {num2} = {sum}";
+        }
 
 
-        
         /// 4. Create a method to calculate the area of a circle based on  
         /// the radius entered in radiusInput, then display output as follows:
         /// 
